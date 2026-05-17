@@ -1,0 +1,55 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# ── Virtual environments ───────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+.env
+
+# ── ML Models (too large for GitHub — store on Render Persistent Disk) ────────
+models/
+*.joblib
+*.pkl
+*.h5
+*.keras
+*.onnx
+
+# ── Raw data (never commit — large files) ────────────────────────────────────
+PRECON/
+data/
+
+# ── Generated outputs ─────────────────────────────────────────────────────────
+plots/
+_pipeline_metrics.json
+TEST_REPORT.md
+
+# ── Firebase / secrets — NEVER commit these ───────────────────────────────────
+*serviceAccountKey*
+*firebase-adminsdk*
+0a3b07ee*
+*.json.key
+secrets/
+
+# ── IDE / OS ──────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Logs & temp ───────────────────────────────────────────────────────────────
+*.log
+*.tmp
+*.bak
