@@ -10,7 +10,7 @@ services:
     name: precon-energy-api
     runtime: python
     region: oregon          # choose: oregon | frankfurt | singapore | ohio
-    plan: starter           # free | starter | standard | pro
+    plan: free              # free | starter | standard | pro
     rootDir: .              # project root (where requirements.txt lives)
 
     buildCommand: pip install -r requirements.txt
@@ -34,23 +34,3 @@ services:
       # ── Models directory (use Render Persistent Disk path if attached) ────
       - key: MODELS_DIR
         value: ""           # Leave blank to use default ./models relative path
-
-  # ── Cron Job (Monthly report on 1st of each month at 2:00 AM UTC) ───────
-  - type: cron
-    name: precon-monthly-reports
-    runtime: python
-    region: oregon
-    plan: starter
-    rootDir: .
-
-    buildCommand: pip install -r requirements.txt
-    schedule: "0 2 1 * *"   # 1st of every month at 02:00 UTC (07:00 PKT)
-    startCommand: python generate_reports.py
-
-    envVars:
-      - key: PYTHON_VERSION
-        value: "3.11.0"
-      - key: FIREBASE_DATABASE_URL
-        value: ""
-      - key: FIREBASE_SERVICE_ACCOUNT_JSON
-        value: ""

@@ -601,3 +601,35 @@ def trigger_report_generation(req: ReportGenerateRequest):
         "processed": len(home_ids),
         "results":   results,
     }
+
+
+# ── Cron Alternative: Webhook Trigger ─────────────────────────────────────────
+
+from fastapi import BackgroundTasks
+import subprocess
+import sys
+
+@app.post("/api/v1/admin/generate-reports", tags=["Admin"])
+def trigger_monthly_reports_webhook(background_tasks: BackgroundTasks, year: int = None, month: int = None):
+    """
+    Trigger the monthly report generation script in the background.
+    Use this endpoint with a free service like cron-job.org instead of a paid Render Cron Job.
+    """
+    def run_script():
+        cmd = [sys.executable, "generate_reports.py"]
+        if year:
+            cmd.extend(["--year", str(year)])
+        if month:
+            cmd.extend(["--month", str(month)])
+        
+        # Run it as a subprocess so it doesn't block the API thread
+        subprocess.run(cmd, capture_output=True, text=True)
+
+    background_tasks.add_task(run_script)
+    return {
+        "status": "started", 
+        "message": "Monthly report generation has started in the background.",
+        "year": year,
+        "month": month
+    }
+
