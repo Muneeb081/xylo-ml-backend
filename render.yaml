@@ -40,7 +40,7 @@ services:
     name: precon-monthly-reports
     runtime: python
     region: oregon
-    plan: free
+    plan: starter
     rootDir: .
 
     buildCommand: pip install -r requirements.txt
