@@ -45,7 +45,7 @@ services:
 
     buildCommand: pip install -r requirements.txt
     schedule: "0 2 1 * *"   # 1st of every month at 02:00 UTC (07:00 PKT)
-    command: python generate_reports.py
+    startCommand: python generate_reports.py
 
     envVars:
       - key: PYTHON_VERSION
