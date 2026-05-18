@@ -16,13 +16,8 @@ venv/
 env/
 .env
 
-# ── ML Models (too large for GitHub — store on Render Persistent Disk) ────────
-models/
-*.joblib
-*.pkl
-*.h5
-*.keras
-*.onnx
+# ── ML Models ──────────────────────────────────────────────────────────────────
+# Note: Models are tracked via Git LFS for Hugging Face Spaces deployment.
 
 # ── Raw data (never commit — large files) ────────────────────────────────────
 PRECON/
